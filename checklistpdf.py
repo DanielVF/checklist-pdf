@@ -42,7 +42,7 @@ BODY_COL_H = PAGE_H - MARGIN_TOP - MARGIN_BOTTOM  # 666
 DARK = HexColor("#1a1a1a")
 TEXT_COLOR = HexColor("#222222")
 WHITE = HexColor("#FFFFFF")
-BOX_BG = HexColor("#F5F5F0")
+BOX_BG = WHITE
 
 FONT_DIR = Path(__file__).parent / "fonts"
 
