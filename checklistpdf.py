@@ -403,7 +403,7 @@ def build_story(pages: list[Page]) -> list[Flowable]:
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: python generate.py <input.md> <output.pdf>", file=sys.stderr)
+        print("Usage: python checklistpdf.py <input.md> <output.pdf>", file=sys.stderr)
         sys.exit(1)
 
     input_path = Path(sys.argv[1])
