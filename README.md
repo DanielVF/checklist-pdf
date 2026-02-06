@@ -1,6 +1,6 @@
 # Checklist PDF Generator
 
-Generates Apocalypse World / Dungeon World style PDF cheat sheets from markdown documents. Primarily intended for incident response checklists, runbooks, and reference cards. Sections are laid out in a two-column grid with bold headers, body text, bullet points, and checkboxes.
+Generates PDF cheatsheets / checklists from markdown documents. Primarily intended for incident response checklists, runbooks, and reference cards. Sections are laid out in a two-column grid with bold headers, body text, bullet points, and checkboxes.
 
 ![Sample output](samples/sample_screenshot.png)
 
