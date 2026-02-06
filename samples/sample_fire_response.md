@@ -13,10 +13,10 @@ When a fire is first detected, immediate assessment is critical to determine the
 
 Contact emergency services immediately after initial assessment is complete.
 
-- [ ] Call 911 or local emergency number
-- [ ] Provide exact address and location within building
-- [ ] Describe the type and size of fire
-- [ ] Report any known injuries or trapped persons
+- [x] Call 911 or local emergency number
+- [x] Provide exact address and location within building
+- [x] Describe the type and size of fire
+- [x] Report any known injuries or trapped persons
 - [ ] Stay on the line until dispatcher releases you
 
 ## Evacuation Initiation
@@ -25,9 +25,9 @@ Begin evacuation procedures as soon as the alarm is triggered.
 
 All personnel should proceed to designated assembly points using the nearest safe exit. Do not use elevators under any circumstances during a fire emergency.
 
-- [ ] Activate building fire alarm if not already triggered
-- [ ] Assist mobility-impaired individuals
-- [ ] Close doors behind you to slow fire spread
+- [x] Activate building fire alarm if not already triggered
+- [x] Assist mobility-impaired individuals
+- [x] Close doors behind you to slow fire spread
 - [ ] Check doors for heat before opening
 
 ## Fire Suppression Decision
@@ -43,10 +43,10 @@ Only attempt to suppress fires if they are small and contained.
 
 After the incident, proper documentation ensures accurate records for insurance and investigation.
 
-- [ ] Record time of discovery
-- [ ] Note all actions taken
-- [ ] Document any injuries
-- [ ] Photograph damage when safe
+- [x] Record time of discovery
+- [x] Note all actions taken
+- [x] Document any injuries
+- [x] Photograph damage when safe
 - [ ] Preserve any potential evidence
 
 

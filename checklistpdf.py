@@ -96,6 +96,7 @@ CHECKBOX_TEXT_STYLE = ParagraphStyle(
 class Element:
     kind: str  # "paragraph", "bullet", "checkbox"
     text: str
+    checked: bool = False
 
 
 @dataclass
@@ -155,11 +156,12 @@ def parse_markdown(path: Path) -> list[Page]:
         elif line.startswith("## "):
             flush_box()
             current_box = Box(title=line[3:].strip())
-        elif line.startswith("- [ ] "):
+        elif line.startswith("- [ ] ") or line.startswith("- [x] ") or line.startswith("- [X] "):
             flush_para()
             if current_box is not None:
+                checked = line[3] in ("x", "X")
                 current_box.elements.append(
-                    Element("checkbox", line[6:].strip())
+                    Element("checkbox", line[6:].strip(), checked=checked)
                 )
         elif line.startswith("- "):
             flush_para()
@@ -204,8 +206,9 @@ class CheckboxItem(Flowable):
     BOX_SIZE = 7
     GAP = 5
 
-    def __init__(self, text: str):
+    def __init__(self, text: str, checked: bool = False):
         super().__init__()
+        self.checked = checked
         self._para = Paragraph(md_to_markup(text), CHECKBOX_TEXT_STYLE)
 
     def wrap(self, availWidth, availHeight):
@@ -224,7 +227,20 @@ class CheckboxItem(Flowable):
         c.setStrokeColor(DARK)
         c.setLineWidth(0.75)
         box_y = self.height - self.BOX_SIZE - 1
-        c.rect(0, box_y, self.BOX_SIZE, self.BOX_SIZE)
+        if self.checked:
+            c.setFillColor(DARK)
+            c.rect(0, box_y, self.BOX_SIZE, self.BOX_SIZE, fill=1)
+            # Draw white checkmark
+            c.setStrokeColor(WHITE)
+            c.setLineWidth(1.2)
+            c.setLineCap(1)  # round caps
+            x0, y0 = 1.5, box_y + self.BOX_SIZE * 0.45
+            x1, y1 = self.BOX_SIZE * 0.38, box_y + 1.5
+            x2, y2 = self.BOX_SIZE - 1.5, box_y + self.BOX_SIZE - 1.5
+            c.line(x0, y0, x1, y1)
+            c.line(x1, y1, x2, y2)
+        else:
+            c.rect(0, box_y, self.BOX_SIZE, self.BOX_SIZE)
         # Draw text
         self._para.drawOn(c, self.BOX_SIZE + self.GAP, 0)
 
@@ -375,7 +391,7 @@ def build_box_children(box: Box) -> list[Flowable]:
             text = f"\u2022\u2002{md_to_markup(el.text)}"
             children.append(Paragraph(text, BULLET_STYLE))
         elif el.kind == "checkbox":
-            children.append(CheckboxItem(el.text))
+            children.append(CheckboxItem(el.text, checked=el.checked))
     return children
 
 

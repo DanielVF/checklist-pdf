@@ -7,13 +7,15 @@ Generates PDF cheatsheets / checklists from markdown documents. Primarily intend
 ## Usage
 
 ```
-uv run checklistpdf.py <input.md> <output.pdf>
+uv run checklistpdf.py <input.md> [output.pdf]
 ```
+
+The output file name is optional. If omitted, the output file will use the input file's name with a `.pdf` extension.
 
 Example:
 
 ```
-uv run checklistpdf.py samples/sample_fire_response.md samples/sample_fire_response.pdf
+uv run checklistpdf.py samples/sample_fire_response.md
 ```
 
 ## Markdown Format
