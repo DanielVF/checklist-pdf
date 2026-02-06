@@ -402,12 +402,12 @@ def build_story(pages: list[Page]) -> list[Flowable]:
 
 
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python checklistpdf.py <input.md> <output.pdf>", file=sys.stderr)
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        print("Usage: python checklistpdf.py <input.md> [output.pdf]", file=sys.stderr)
         sys.exit(1)
 
     input_path = Path(sys.argv[1])
-    output_path = Path(sys.argv[2])
+    output_path = Path(sys.argv[2]) if len(sys.argv) == 3 else input_path.with_suffix(".pdf")
 
     if not input_path.exists():
         print(f"Error: Input file not found: {input_path}", file=sys.stderr)
