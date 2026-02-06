@@ -1,0 +1,11 @@
+[project]
+name = "checklistgenerator"
+version = "0.1.0"
+description = "Generate Apocalypse World / Dungeon World style PDF checklists from Markdown"
+requires-python = ">=3.11"
+dependencies = [
+    "reportlab>=4.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
