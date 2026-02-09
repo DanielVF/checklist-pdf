@@ -226,7 +226,7 @@ class CheckboxItem(Flowable):
         # Draw checkbox square
         c.setStrokeColor(DARK)
         c.setLineWidth(0.75)
-        box_y = self.height - self.BOX_SIZE - 1
+        box_y = self.height - self.BOX_SIZE - 3
         if self.checked:
             c.setFillColor(DARK)
             c.rect(0, box_y, self.BOX_SIZE, self.BOX_SIZE, fill=1)
