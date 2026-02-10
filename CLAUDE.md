@@ -16,6 +16,14 @@ To regenerate the sample PDF:
 uv run checklistpdf.py samples/sample_fire_response.md samples/sample_fire_response.pdf
 ```
 
+`transpose_md.py` swaps the H1/H2 hierarchy in a markdown file. For example, if H1s are roles and H2s are phases, transposing makes phases H1 and roles H2. Content under each role+phase combination is preserved.
+
+```
+uv run transpose_md.py input.md [output.md]
+```
+
+If the output argument is omitted, it defaults to `input_transposed.md`.
+
 To regenerate the sample screenshot (1700x990, top of first page):
 
 ```
