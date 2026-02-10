@@ -203,7 +203,7 @@ class SetTitle(Flowable):
 class CheckboxItem(Flowable):
     """A checkbox square followed by text."""
 
-    BOX_SIZE = 7
+    BOX_SIZE = 5
     GAP = 5
 
     def __init__(self, text: str, checked: bool = False):
