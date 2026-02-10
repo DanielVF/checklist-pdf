@@ -34,6 +34,8 @@ All personnel should proceed to designated assembly points using the nearest saf
 
 Only attempt to suppress fires if they are small and contained.
 
+---
+
 - Fire extinguisher use requires training
 - Never turn your back on a fire
 - Maintain clear escape route at all times
@@ -49,6 +51,7 @@ After the incident, proper documentation ensures accurate records for insurance 
 - [x] Photograph damage when safe
 - [ ] Preserve any potential evidence
 
+---
 
 # Equipment and Resources
 

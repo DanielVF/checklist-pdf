@@ -94,7 +94,7 @@ CHECKBOX_TEXT_STYLE = ParagraphStyle(
 
 @dataclass
 class Element:
-    kind: str  # "paragraph", "bullet", "checkbox"
+    kind: str  # "paragraph", "bullet", "checkbox", "hrule"
     text: str
     checked: bool = False
 
@@ -139,6 +139,9 @@ def parse_markdown(path: Path) -> list[Page]:
         nonlocal current_box
         flush_para()
         if current_box is not None and current_page is not None:
+            # Strip trailing hrules
+            while current_box.elements and current_box.elements[-1].kind == "hrule":
+                current_box.elements.pop()
             current_page.boxes.append(current_box)
             current_box = None
 
@@ -156,6 +159,10 @@ def parse_markdown(path: Path) -> list[Page]:
         elif line.startswith("## "):
             flush_box()
             current_box = Box(title=line[3:].strip())
+        elif re.match(r"^[ ]{0,3}([-*_])([ ]*\1){2,}[ ]*$", line):
+            flush_para()
+            if current_box is not None:
+                current_box.elements.append(Element("hrule", ""))
         elif line.startswith("- [ ] ") or line.startswith("- [x] ") or line.startswith("- [X] "):
             flush_para()
             if current_box is not None:
@@ -243,6 +250,27 @@ class CheckboxItem(Flowable):
             c.rect(0, box_y, self.BOX_SIZE, self.BOX_SIZE)
         # Draw text
         self._para.drawOn(c, self.BOX_SIZE + self.GAP, 0)
+
+
+class HRuleFlowable(Flowable):
+    """A horizontal rule drawn as a thin line."""
+
+    HEIGHT = 6
+
+    def wrap(self, availWidth, availHeight):
+        self.width = availWidth
+        self.height = self.HEIGHT
+        return (self.width, self.height)
+
+    def split(self, availWidth, availHeight):
+        return []
+
+    def draw(self):
+        c = self.canv
+        y = self.height / 2
+        c.setStrokeColor(HexColor("#999999"))
+        c.setLineWidth(0.5)
+        c.line(0, y, self.width, y)
 
 
 class BoxFlowable(Flowable):
@@ -392,6 +420,8 @@ def build_box_children(box: Box) -> list[Flowable]:
             children.append(Paragraph(text, BULLET_STYLE))
         elif el.kind == "checkbox":
             children.append(CheckboxItem(el.text, checked=el.checked))
+        elif el.kind == "hrule":
+            children.append(HRuleFlowable())
     return children
 
 
